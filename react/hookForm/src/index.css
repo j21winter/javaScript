@@ -24,6 +24,11 @@
   column-gap: 5px;
 }
 
+.submit{
+  display: flex;
+  justify-content: flex-end;
+}
+
 label{
   flex: 1;
 }
