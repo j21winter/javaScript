@@ -4,11 +4,18 @@ import Advertisement from './Advertisement'
 
 const MainContent = (props) => {
 
-    const {row1, row2} = props
+    // const {row1, row2} = props
 
     return (
-        <div className="main" >
-            <div className="row">
+        <div className="mainContent" >
+
+            {props.children}
+
+            {/* <div className="subContents"></div>
+            <div className="subContents"></div>
+            <div className="subContents"></div> */}
+
+            {/* <div className="row">
                 {
                     row1.map((Item, index) => {
                         return <Item key={index}/>
@@ -24,7 +31,7 @@ const MainContent = (props) => {
                     )
                 }
             </div>
-            
+             */}
         </div>
 
     )
