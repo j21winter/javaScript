@@ -47,7 +47,7 @@ const pokeNames = pokémon.map( p => p.name)
 const pokeNamesWithHighId = pokémon.filter(p => p.id > 99).map( p => p.name)
 
 // 8) array with just the names of the pokémon whose only type is poison
-const pokePoison = pokémon.filter(p => p.types.length == 1 && p.types.includes("poison") )
+const pokePoison = pokémon.filter(p => p.types.length == 1 && p.types.includes("poison") ).map( p => p.name)
 
 // 9) array containing just the first type of all the pokémon whose second type is "flying"
 const pokeFlyType = pokémon.filter( p => p.types[1] == "flying").map(p => p.types[0])
