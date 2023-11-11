@@ -64,9 +64,7 @@ const People = (props) => {
 
   return (
     <div>
-        <h2>People:</h2>
-        <p style={{color: "red"}}>{error ? error.message + "\nThese aren't the droids your looking for..." : "" }</p>
-        
+        <h2>People:</h2>        
         {results.length < 1 ? 
         <div>
             {error ? <img src={obiWan} alt="Obi Wan Kenobi Gif" /> :<p>Loading...</p>}
