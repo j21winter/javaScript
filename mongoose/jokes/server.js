@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
     
-require("./config/mongoose.config");
+require("./server/config/mongoose.config");
     
 app.use(express.json(), express.urlencoded({ extended: true }));
     
