@@ -25,21 +25,22 @@ const Product = () => {
     }
   return (
     <>
-        <form onSubmit={handleForm}>
-            <div className="row">
+        
+        <h1>Product Manager</h1> {/* Title */}
+        <form onSubmit={handleForm}> {/* Form */}
+            <div className="row"> {/* product title input */}
                 <label htmlFor="title">Title:</label>
                 <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
             </div>
-            <div className="row">
+            <div className="row"> {/* product price input */}
                 <label htmlFor="price">Price:</label>
                 <input type="number" value={price} onChange={e => setPrice(e.target.value)} />
             </div>
-            <div className="row">
+            <div className="row"> {/* product description input */}
                 <label htmlFor="description">Description:</label>
                 <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
             </div>
-            <button type="submit">Submit</button>
-
+            <button type="submit">Create</button> {/* Form Submit */}
         </form>
     </>
   )
