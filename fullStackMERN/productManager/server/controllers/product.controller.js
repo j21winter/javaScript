@@ -11,17 +11,17 @@ module.exports = {
         res.json({ message : 'hello world'})
     },
 
-    // TODO CREATE
+    // CREATE
     createProduct: (req, res) => {
         Product.create(req.body)
             .then(newProduct => res.json(newProduct))
             .catch(err =>  res.json(err))
     },
 
-    // TODO READ
+    // READ
     findOne: (req, res) => {
-        Product.find({_id : req.params.id})
-            .then(foundProduct => res.json(foundProduct))
+        Product.findById( req.params.id )
+            .then(foundProduct => res.json( foundProduct ))
             .catch(err =>  res.json(err))
     },
 
@@ -31,17 +31,17 @@ module.exports = {
             .catch(err =>  res.json(err))
     },
 
-    // TODO UPDATE
+    // UPDATE
     updateOne: (req, res) => {
-        Product.updateOne({_id: req.params.id}, {$set : req.body})
+        Product.findByIdAndUpdate( req.params.id, req.body )
             .then(updateConfirmation => res.json(updateConfirmation))
             .catch(err =>  res.json(err))
     },
     
-    // TODO DELETE
+    // DELETE
     deleteOne: (req, res) => {
-        Product.deleteOne({_id: req.params.id})
-            .then(deleteConfirmation => res.json(deleteConfirmation))
+        Product.findByIdAndDelete( req.params.id )
+            .then(deletedProduct => res.json(deletedProduct))
             .catch(err =>  res.json(err))
     }
 

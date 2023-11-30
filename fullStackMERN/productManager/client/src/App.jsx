@@ -1,12 +1,21 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import './App.css'
-import Product from './components/product'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Main from './views/main'
 
 function App() {
 
   return (
     <>
-      <Product />
+      <BrowserRouter>
+
+        <Routes>
+
+          <Route element={<Main />} path="/" default />
+        
+        </Routes>
+
+      </BrowserRouter>
     </>
   )
 }

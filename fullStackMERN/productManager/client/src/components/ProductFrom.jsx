@@ -1,27 +1,31 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
-const Product = () => {
+const ProductForm = (props) => {
+    const {products, setProducts} = props
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
 
     const handleForm = (e) => {
         
-        e.preventDefault // prevent refresh of the page
+        e.preventDefault() // prevent refresh of the page
+
         // make the api call using axios
         axios.post("http://localhost:8000/", {
             title, 
             price, 
             description
             })
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res.data) // double check what has come back and find the product object specifically
+                setProducts([...products, res.data ]) // update products list by spreading the current "products" and adding in our new product object
+                // reset state used in the form...
+                setTitle("")
+                setPrice("")
+                setDescription("")
+            })
             .catch(err => console.log(err))
-        
-        // reset the state variables?
-        setTitle("")
-        setPrice("")
-        setDescription("")
     }
   return (
     <>
@@ -46,4 +50,4 @@ const Product = () => {
   )
 }
 
-export default Product
+export default ProductForm
