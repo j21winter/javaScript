@@ -12,7 +12,7 @@ const ProductForm = (props) => {
         e.preventDefault() // prevent refresh of the page
 
         // make the api call using axios
-        axios.post("http://localhost:8000/", {
+        axios.post("http://localhost:8000/api/products", {
             title, 
             price, 
             description
@@ -34,15 +34,15 @@ const ProductForm = (props) => {
         <form onSubmit={handleForm}> {/* Form */}
             <div className="row"> {/* product title input */}
                 <label htmlFor="title">Title:</label>
-                <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                <input id="title" type="text" value={title} onChange={e => setTitle(e.target.value)} />
             </div>
             <div className="row"> {/* product price input */}
                 <label htmlFor="price">Price:</label>
-                <input type="number" value={price} onChange={e => setPrice(e.target.value)} />
+                <input id="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
             </div>
             <div className="row"> {/* product description input */}
                 <label htmlFor="description">Description:</label>
-                <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
+                <input id="description" type="text" value={description} onChange={e => setDescription(e.target.value)} />
             </div>
             <button type="submit">Create</button> {/* Form Submit */}
         </form>
