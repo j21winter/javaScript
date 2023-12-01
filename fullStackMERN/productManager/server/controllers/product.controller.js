@@ -33,8 +33,8 @@ module.exports = {
 
     // UPDATE
     updateOne: (req, res) => {
-        Product.findByIdAndUpdate( req.params.id, req.body )
-            .then(updateConfirmation => res.json(updateConfirmation))
+        Product.findByIdAndUpdate( req.params.id, req.body, {new: true} )
+            .then(updatedProduct => res.json(updatedProduct))
             .catch(err =>  res.json(err))
     },
     

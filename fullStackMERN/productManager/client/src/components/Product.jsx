@@ -22,6 +22,10 @@ const Product = (props) => {
         navigate('/products')
     }
 
+    const navigateEdit = () => {
+        navigate(`/products/edit/${product._id}`)
+    }
+
   return (
     // some type of map function to display the product
     <>
@@ -29,7 +33,10 @@ const Product = (props) => {
         <p>Price: {product.price}</p>
         <p>Description: {product.description}</p>
 
-        <button onClick={navigateHome}>HOME</button>
+        <div>
+            <button onClick={navigateHome}>Home</button>
+            <button onClick={navigateEdit}>Edit</button>
+        </div>
     </>
   )
 }

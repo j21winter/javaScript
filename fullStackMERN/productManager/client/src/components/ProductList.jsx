@@ -16,19 +16,27 @@ const ProductList = (props) => {
             .catch(err => console.log(err))
     }, [])
 
-    const navigateTo = (id) => {
+    const seeProduct = (id) => {
         navigate(`/products/${id}`)
+    }
+
+    const editProduct = (id) => {
+        navigate(`/products/edit/${id}`)
     }
 
   return (
     <>
         <h1>LIST COMPONENT</h1>
             {products.map((product, index) => (
-                <p onClick={() => navigateTo(product._id)} key={index}>
-                    Title:{product.title},
-                    Price:{product.price},
-                    Description: {product.description}
-                </p>
+                <div>
+                    <p key={index}>
+                        Title:{product.title},
+                        Price:{product.price},
+                        Description: {product.description}
+                    </p>
+                    <button onClick={() => seeProduct(product._id)} >See Product </button>
+                    <button onClick={() => editProduct(product._id)} >Edit Product </button>
+                </div>
             )) 
             }
     </>

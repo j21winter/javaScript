@@ -34,15 +34,15 @@ const ProductForm = (props) => {
         <form onSubmit={handleForm}> {/* Form */}
             <div className="row"> {/* product title input */}
                 <label htmlFor="title">Title:</label>
-                <input id="title" type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                <input id="title" name='title' type="text" value={title} onChange={e => setTitle(e.target.value)} />
             </div>
             <div className="row"> {/* product price input */}
                 <label htmlFor="price">Price:</label>
-                <input id="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
+                <input id="price" name='price' type="number" value={price} onChange={e => setPrice(e.target.value)} />
             </div>
             <div className="row"> {/* product description input */}
                 <label htmlFor="description">Description:</label>
-                <input id="description" type="text" value={description} onChange={e => setDescription(e.target.value)} />
+                <input id="description"  name='price' type="text" value={description} onChange={e => setDescription(e.target.value)} />
             </div>
             <button type="submit">Create</button> {/* Form Submit */}
         </form>
