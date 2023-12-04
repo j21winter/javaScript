@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
 const Product = (props) => {
     const navigate = useNavigate()
@@ -18,13 +18,16 @@ const Product = (props) => {
         .catch(err => console.log(err))
     }, [])
 
-    const navigateHome = () => {
-        navigate('/products')
+    const deleteProduct = (productId) => {
+        // Make the API call to delete the product using the product id
+        axios.delete(`http://localhost:8000/api/products/${productId}`)
+            .then(deletedProduct => {
+                console.log(deletedProduct)
+                navigate('/products')
+            })
+            .catch(err => console.log(err))
     }
 
-    const navigateEdit = () => {
-        navigate(`/products/edit/${product._id}`)
-    }
 
   return (
     // some type of map function to display the product
@@ -34,8 +37,9 @@ const Product = (props) => {
         <p>Description: {product.description}</p>
 
         <div>
-            <button onClick={navigateHome}>Home</button>
-            <button onClick={navigateEdit}>Edit</button>
+            <Link to={`/products`}>Home</Link>
+            <Link to={`/products/edit/${product._id}`}>Edit</Link>
+            <button onClick={(e) => deleteProduct(product._id)}>Delete</button>
         </div>
     </>
   )
