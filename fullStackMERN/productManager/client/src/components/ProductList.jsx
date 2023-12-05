@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 
 
 const ProductList = (props) => {
-    const {products, setProducts} = props
+    const {productList, setProductList} = props
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/products')
             .then(res => {
                 console.log(res.data)
-                setProducts(res.data)
+                setProductList(res.data)
             })
             .catch(err => console.log(err))
     }, [])
@@ -20,7 +20,7 @@ const ProductList = (props) => {
         axios.delete(`http://localhost:8000/api/products/${productId}`)
             .then(deletedProduct => {
                 console.log(deletedProduct)
-                setProducts(products.filter(product => product._id != productId))
+                setProductList(productList.filter(product => product._id != productId))
             })
             .catch(err => console.log(err))
     }
@@ -28,7 +28,7 @@ const ProductList = (props) => {
   return (
     <>
         <h1>LIST COMPONENT</h1>
-            {products.map((product, index) => (
+            {productList.map((product, index) => (
                 <div key={index}>
                     <p >
                         Title:{product.title},
