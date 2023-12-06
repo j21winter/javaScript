@@ -5,7 +5,7 @@ const DeleteButton = (props) => {
     const { productId, successCallback } = props
 
     const deleteProduct = (e) => {
-        // Make the API call to delete the product using the product id
+        // API call to delete the product using the product id
         axios.delete(`http://localhost:8000/api/products/${productId}`)
             .then(deletedProduct => {
                 console.log(deletedProduct)

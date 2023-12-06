@@ -4,11 +4,12 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import DeleteButton from './DeleteButton'
 
 const Product = (props) => {
-    const navigate = useNavigate()
-    const { id } = useParams("") // useParams to pull the id from the url as a param
-    const [ product, setProduct ] = useState({}) // state to store the product
+    const navigate = useNavigate() // for delete button callback function routing
+    const { id } = useParams("") // id param
+    const [ product, setProduct ] = useState({}) // store the product
     
-    useEffect(() => { // axios call to get the individual product using the id in the param
+    // API CALL FOR THE CURRENT PRODUCT //
+    useEffect(() => { 
         axios.get(`http://localhost:8000/api/products/${id}`)
         .then(res => {
             console.log(res.data)
@@ -27,7 +28,10 @@ const Product = (props) => {
         <div>
             <button><Link to={`/products`}>Home</Link></button>
             <button><Link to={`/products/edit/${product._id}`}>Edit</Link></button>
-            <DeleteButton productId={product._id} successCallback={() => navigate('/products')}/>
+            <DeleteButton 
+                productId={product._id} 
+                successCallback={() => navigate('/products')}
+            />
         </div>
     </>
   )

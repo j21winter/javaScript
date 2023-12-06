@@ -41,7 +41,7 @@ const UpdateProduct = (props) => {
       <>
         <h2>Update Product</h2>
         
-        {loaded && <ProductForm initialProduct={product} onSubmitProps={updateProduct}/>} 
+        {loaded && <ProductForm product={product} setProduct={setProduct}onSubmitProps={updateProduct}/>} 
       </>
     )
 }
