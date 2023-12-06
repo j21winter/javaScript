@@ -6,10 +6,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ProductForm from './ProductFrom';
 
 const UpdateProduct = (props) => {
-    const { id } = useParams(''); // useParams to get the product id from the url
-    const navigate = useNavigate();
-    const [ product, setProduct ] = useState({}); // I will need state to remember the items in my product details
-    const [ loaded, setLoaded ] = useState(false)
+    const { id } = useParams(''); // product id from the url
+    const navigate = useNavigate(); // routing in updatePRoduct function
+    const [ product, setProduct ] = useState({}); // product details
+    const [ loaded, setLoaded ] = useState(false) // prevent premature rendering of the form used in useEffect
 
     // I need to make a get call to the DB using axios to pre fill my form with my product data
     useEffect(() => {
@@ -34,7 +34,7 @@ const UpdateProduct = (props) => {
           console.log(updatedItem);
           navigate(`/products/${id}`)
         })
-
+        .catch(err => console.log(err))
     } 
 
     return (
