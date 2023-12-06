@@ -8,8 +8,8 @@ import ProductForm from './ProductFrom';
 const UpdateProduct = (props) => {
     const { id } = useParams(''); // useParams to get the product id from the url
     const navigate = useNavigate();
-    // I will need state to remember the items in my product details
-    const [ product, setProduct ] = useState({ title: "", price: "", description: ""});
+    const [ product, setProduct ] = useState({}); // I will need state to remember the items in my product details
+    const [ loaded, setLoaded ] = useState(false)
 
     // I need to make a get call to the DB using axios to pre fill my form with my product data
     useEffect(() => {
@@ -21,6 +21,7 @@ const UpdateProduct = (props) => {
             price: res.data.price,
             description: res.data.description
           });
+          setLoaded(true)
         })
         .catch(err => console.log(err));
     }, []);
@@ -35,7 +36,6 @@ const UpdateProduct = (props) => {
 
     // I will need an onsubmit handler for the form to make a patch request using axios
     const updateProduct = (e) => {
-      e.preventDefault();
       axios.patch(`http://localhost:8000/api/products/${id}`, product)
         .then(updatedItem => {
           console.log(updatedItem);
@@ -47,7 +47,8 @@ const UpdateProduct = (props) => {
     return (
       //TODO Reusable code from my ProductForm Component
       <>
-        <ProductForm product={product} setProduct={setProduct} onSubmitProps={updateProduct}/> 
+        <h2>Update Product</h2>
+        {loaded && <ProductForm initialProduct={product} onSubmitProps={updateProduct}/>} 
       </>
       // Return the form pre filled and allow the user to edit and submit
       // <>

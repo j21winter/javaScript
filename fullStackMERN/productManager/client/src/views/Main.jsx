@@ -35,6 +35,8 @@ const Main = () => {
 
   return (
     <>
+        <h1>Product Manager</h1> {/* Title */}
+        <h2>Create Product</h2>
         <ProductForm initialProduct={product} onSubmitProps={createProduct} errors={errors} />
         <ProductList productList={productList} setProductList={setProductList}/>
     </>
