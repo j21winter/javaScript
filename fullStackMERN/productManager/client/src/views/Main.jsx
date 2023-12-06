@@ -13,24 +13,20 @@ const Main = () => {
 
     const createProduct = productParam => {
         setErrors(false) // reset the errors each time we resubmit
-
         axios.post("http://localhost:8000/api/products", productParam) // make the api call using axios
             .then(res => {
                 console.log(res)
-                //ERROR HANDLING
-                if(res.data.errors){
-                    console.log("errors Found")
-                    let errorMessages = []
-                    Object.values(res.data.errors).forEach((item) => errorMessages.push(item.message))
-                    setErrors(errorMessages)
-                } else {
-                    console.log(res.data) // double check what has come back and find the product object specifically
-                    setProductList([...productList, res.data ]) // update products list by spreading the current "products" and adding in our new product object
-                    setProduct({title:"",price:"",description:""}) // reset state used in the form...
-                }
+                console.log(res.data) // double check what has come back and find the product object specifically
+                setProductList([...productList, res.data ]) // update products list by spreading the current "products" and adding in our new product object
+                setProduct({title:"",price:"",description:""}) // reset state used in the form...
             })
-            .catch(err => console.log(err))
-  }
+            .catch(err => {
+                console.log("errors Found")
+                console.log(err)
+                let errorMessages = []
+                    Object.values(err.response.data.errors).forEach((item) => errorMessages.push(item.message))
+                    setErrors(errorMessages)})
+    }
 
   return (
     <>

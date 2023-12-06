@@ -10,6 +10,7 @@ const UpdateProduct = (props) => {
     const navigate = useNavigate(); // routing in updatePRoduct function
     const [ product, setProduct ] = useState({}); // product details
     const [ loaded, setLoaded ] = useState(false) // prevent premature rendering of the form used in useEffect
+    const [ errors, setErrors ] = useState(false)
 
     // I need to make a get call to the DB using axios to pre fill my form with my product data
     useEffect(() => {
@@ -34,14 +35,25 @@ const UpdateProduct = (props) => {
           console.log(updatedItem);
           navigate(`/products/${id}`)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log("errors Found")
+          console.log(err)
+          let errorMessages = []
+              Object.values(err.response.data.errors).forEach((item) => errorMessages.push(item.message))
+              setErrors(errorMessages)})
     } 
 
     return (
       <>
         <h2>Update Product</h2>
         
-        {loaded && <ProductForm product={product} setProduct={setProduct}onSubmitProps={updateProduct}/>} 
+        {loaded && 
+        <ProductForm 
+          product={product} 
+          setProduct={setProduct}
+          onSubmitProps={updateProduct}
+          errors={errors}
+          />} 
       </>
     )
 }
