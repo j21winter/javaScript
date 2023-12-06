@@ -19,24 +19,17 @@ const UpdateProduct = (props) => {
           setProduct({ 
             title: res.data.title,
             price: res.data.price,
-            description: res.data.description
+            description: res.data.description,
           });
           setLoaded(true)
         })
         .catch(err => console.log(err));
     }, []);
 
-    // onChange event handlers //!Removed when migrating to personForm
-    // const changeHandler = e => {
-    //   setProduct({
-    //     ...product,
-    //     [e.target.name] : e.target.value
-    //   });
-    // }
 
     // I will need an onsubmit handler for the form to make a patch request using axios
-    const updateProduct = (e) => {
-      axios.patch(`http://localhost:8000/api/products/${id}`, product)
+    const updateProduct = productParam => {
+      axios.patch(`http://localhost:8000/api/products/${id}`, productParam)
         .then(updatedItem => {
           console.log(updatedItem);
           navigate(`/products/${id}`)
@@ -45,29 +38,10 @@ const UpdateProduct = (props) => {
     } 
 
     return (
-      //TODO Reusable code from my ProductForm Component
       <>
         <h2>Update Product</h2>
         {loaded && <ProductForm initialProduct={product} onSubmitProps={updateProduct}/>} 
       </>
-      // Return the form pre filled and allow the user to edit and submit
-      // <>
-      //   <form onSubmit={handleSubmit}>
-      //     <div className="row"> {/* product title input */}
-      //       <label htmlFor="title">Title:</label>
-      //       <input id="title" name='title' type="text" value={product.title} onChange={ changeHandler } />
-      //     </div>
-      //     <div className="row"> {/* product price input */}
-      //       <label htmlFor="price">Price:</label>
-      //       <input id="price" name='price' type="number" value={product.price} onChange={ changeHandler } />
-      //     </div>
-      //     <div className="row"> {/* product description input */}
-      //       <label htmlFor="description">Description:</label>
-      //       <input id="description" name='description' type="text" value={product.description} onChange={ changeHandler } />
-      //     </div>
-      //     <button type="submit">Edit</button> {/* Form Submit */}
-      //   </form>
-      // </>
     )
 }
 

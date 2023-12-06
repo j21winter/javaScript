@@ -10,17 +10,15 @@ const ProductForm = (props) => {
             ...product,
             [e.target.name] : e.target.value
         });
+        () => console.log(product)
         }
-    
-    console.log("initial product" + initialProduct)
-    console.log(initialProduct)
-    console.log("product" + product)
-    console.log(product)
 
   return (
     <>
         <form onSubmit={(e) => {
             e.preventDefault(); 
+            console.log("PRODUCT IS" )
+            console.log(product)
             onSubmitProps(product)
         }}> {/* Form */}
             {errors ? 
