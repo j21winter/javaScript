@@ -17,9 +17,8 @@ const ProductForm = (props) => {
     <>
         <form onSubmit={(e) => {
             e.preventDefault(); 
-            console.log("PRODUCT IS" )
-            console.log(product)
             onSubmitProps(product)
+
         }}> {/* Form */}
             {errors ? 
                 errors.map((item, index) => ( 

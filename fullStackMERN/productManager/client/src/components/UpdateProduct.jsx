@@ -40,6 +40,7 @@ const UpdateProduct = (props) => {
     return (
       <>
         <h2>Update Product</h2>
+        
         {loaded && <ProductForm initialProduct={product} onSubmitProps={updateProduct}/>} 
       </>
     )

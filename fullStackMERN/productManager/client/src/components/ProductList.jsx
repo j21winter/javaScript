@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import DeleteButton from './DeleteButton'
 
 
 
@@ -16,14 +17,9 @@ const ProductList = (props) => {
             .catch(err => console.log(err))
     }, [])
 
-    const deleteProduct = (productId) => {
-        // Make the API call to delete the product using the product id
-        axios.delete(`http://localhost:8000/api/products/${productId}`)
-            .then(deletedProduct => {
-                console.log(deletedProduct)
-                setProductList(productList.filter(product => product._id != productId))
-            })
-            .catch(err => console.log(err))
+    const removeFromDom = productId => {
+        console.log("removing from dom")
+        setProductList(productList.filter(product => product._id != productId))
     }
 
   return (
@@ -36,9 +32,9 @@ const ProductList = (props) => {
                         Price:{product.price},
                         Description: {product.description}
                     </p>
-                    <Link to={`/products/${product._id}`}>See Product</Link>
-                    <Link to={`/products/edit/${product._id}`}>Edit Product</Link>
-                    <button onClick={(e) => deleteProduct(product._id)}>Delete</button>
+                    <button><Link to={`/products/${product._id}`}>See Product</Link></button>
+                    <button><Link to={`/products/edit/${product._id}`}>Edit Product</Link></button>
+                    <DeleteButton productId={product._id} successCallback={ () => removeFromDom(product._id) }/>
                 </div>
             )) 
             }
