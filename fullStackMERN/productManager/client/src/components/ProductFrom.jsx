@@ -17,28 +17,26 @@ const ProductForm = (props) => {
             onSubmitProps(product)
             }}> 
 
-            {/* ERROR HANDLING */}
-            {errors && 
-                    errors.map((item, index) => ( 
-                    <p style={{color : "orange"}} key={index}>{item}</p>)) 
-            }
-
             {/* TITLE INPUT */}
             <div className="row"> 
+                {errors.title && <p style={{color : "orange"}} >{errors.title.message}</p> }
                 <label htmlFor="title">Title:</label>
                 <input id="title" name='title' type="text" value={product.title} onChange={ changeHandler }/>
             </div>
 
             {/* PRICE INPUT */}
             <div className="row"> 
+                {errors.price && <p style={{color : "orange"}} >{errors.price.message}</p> }
                 <label htmlFor="price">Price:</label>
                 <input id="price" name='price' type="number" value={product.price} onChange={ changeHandler } />
             </div>
 
             {/* DESCRIPTION INPUT */}
             <div className="row"> 
+                {errors.description && <p style={{color : "orange"}} >{errors.description.message}</p> }
                 <label htmlFor="description">Description:</label>
                 <input id="description"  name='description' type="text" value={product.description} onChange={ changeHandler } />
+
             </div>
 
             <button type="submit">Submit</button> 

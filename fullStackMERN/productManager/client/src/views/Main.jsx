@@ -21,11 +21,8 @@ const Main = () => {
                 setProduct({title:"",price:"",description:""}) // reset state used in the form...
             })
             .catch(err => {
-                console.log("errors Found")
                 console.log(err)
-                let errorMessages = []
-                    Object.values(err.response.data.errors).forEach((item) => errorMessages.push(item.message))
-                    setErrors(errorMessages)})
+                setErrors(err.response.data.errors)}) // set the errors to the errors dictionary
     }
 
   return (

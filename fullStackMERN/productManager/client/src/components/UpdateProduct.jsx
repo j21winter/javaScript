@@ -36,11 +36,8 @@ const UpdateProduct = (props) => {
           navigate(`/products/${id}`)
         })
         .catch(err => {
-          console.log("errors Found")
           console.log(err)
-          let errorMessages = []
-              Object.values(err.response.data.errors).forEach((item) => errorMessages.push(item.message))
-              setErrors(errorMessages)})
+          setErrors(err.response.data.errors)})
     } 
 
     return (
