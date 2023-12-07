@@ -13,6 +13,14 @@ const AllAuthors = (props) => {
             }).catch(err => console.log(err))
     }, [])
 
+    const deleteAuthor = (id) => {
+        axios.delete(`http://localhost:8000/api/authors/${id}`)
+            .then(res => {
+                console.log(res)
+                setAllAuthors(allAuthors.filter(author => author._id != id))})
+            .catch(err => console.log(err))
+    }
+
 return (
     <>
         
@@ -31,7 +39,7 @@ return (
                 allAuthors.map((author, index) => 
                     <tr key={index}>
                         <td>{author.name}</td>
-                        <td><Link to={`/authors/edit/${author._id}`} >Edit</Link> <Link >Delete</Link></td>
+                        <td><Link to={`/authors/edit/${author._id}`} className='btn btn-primary'>Edit</Link> <button className='btn btn-warning' onClick={(e) => deleteAuthor(author._id)}>Delete</button></td>
                     </tr>
                     )}
             </tbody>
