@@ -7,7 +7,7 @@ import axios from 'axios'
 
 function App() {
 
-  const [ currentAuthor, setCurrentAuthor] = useState({});
+  const [ currentAuthor, setCurrentAuthor] = useState({name:""});
   const [ allAuthors, setAllAuthors] = useState([]);
   const [ errors, setErrors ] = useState("")
   const navigate = useNavigate();

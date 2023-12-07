@@ -1,7 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import AuthorForm from './AuthorForm'
-import { useParams, useNavigate} from 'react-router-dom'
+import { useParams, useNavigate, Link} from 'react-router-dom'
 import axios from 'axios'
+
 
 
 
@@ -20,7 +21,9 @@ const UpdateAuthor = () => {
                 setCurrentAuthor(res.data)
                 setLoaded(true)
             })
-            .catch(err => console.log(err))
+            .catch(err => 
+                console.log(err)
+                )
     },[])
 
     const editAuthor = ( authorParam ) => {
@@ -37,14 +40,22 @@ const UpdateAuthor = () => {
   return (
     <div>
         {loaded && 
-            <AuthorForm 
-                title={"Update Author"}
-                onSubmitFunction={ editAuthor }
-                currentAuthor={ currentAuthor }
-                setCurrentAuthor={ setCurrentAuthor }
-                errors={errors}
-                default 
-                />}
+            currentAuthor != null ?
+                <AuthorForm our 
+                    title={"Update Author"}
+                    onSubmitFunction={ editAuthor }
+                    currentAuthor={ currentAuthor }
+                    setCurrentAuthor={ setCurrentAuthor }
+                    errors={errors}
+                    default 
+                    />
+            :
+            <div>
+                    <p className=''>Could not find the author you were looking for...</p>
+                    <p>Would you like to add the author?</p>
+                    <button className='btn btn-info '> <Link className='text-reset ' to='/authors'>Add Author HERE...</Link> </button>
+                </div>
+            }
     </div>
   )
 }
