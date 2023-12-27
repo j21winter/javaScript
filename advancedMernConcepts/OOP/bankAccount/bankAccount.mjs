@@ -5,11 +5,14 @@ class BankAccount {
     }
 
     deposit(amount){ 
+        console.log("/n making deposit")
+
         this.balance += amount;
         return this;
     }
 
     withdraw(amount){
+        console.log("/n making withdrawal")
         if(this.balance >= amount){
             this.balance -= amount;
         } else {
@@ -24,7 +27,7 @@ class BankAccount {
         return this;
     }
 
-    yeildInterest() {
+    yieldInterest() {
         if(this.balance > 0){
             this.balance += (this.balance * this.intRate);
         } else return this;
@@ -32,8 +35,4 @@ class BankAccount {
     }
 }
 
-const acc1 = new BankAccount(0.3, 0)
-const acc2 = new BankAccount(0.3, 0)
-
-acc1.deposit(1).deposit(1).deposit(1).withdraw(1).yeildInterest().displayAccountInfo()
-acc2.deposit(2).deposit(2).withdraw(1).withdraw(1).withdraw(1).withdraw(1).yeildInterest().displayAccountInfo()
+export default BankAccount
