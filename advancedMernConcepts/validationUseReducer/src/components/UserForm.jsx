@@ -59,7 +59,6 @@ const reducer = (state, action) => {
                     error : null
                 }
             }
-        
         case 'SET-LASTNAME' : 
             console.log(action.payload)
             return {
@@ -92,43 +91,46 @@ const reducer = (state, action) => {
         }
     }
 
-const isSubmitDisabled = () => {
-    const { firstName, lastName, email } = state;
-    return (
-        firstName.error ||
-        lastName.error ||
-        email.error ||
-        firstName.value.length < 1 ||
-        lastName.value.length < 1 ||
-        email.value.length < 1
-        );
-    };
-
-const UserForm = () => {
-    const [state, dispatch] = useReducer(reducer, initialState)
+    
+    const UserForm = () => {
+        const [state, dispatch] = useReducer(reducer, initialState)
+        
+        const isSubmitDisabled = () => {
+            const { firstName, lastName, email } = state;
+            return (
+                firstName.error ||
+                lastName.error ||
+                email.error ||
+                firstName.value.length < 1 ||
+                lastName.value.length < 1 ||
+                email.value.length < 1
+                );
+            };
 
     const handleChange = (e) => {
         const {name, value} = e.target
-
         switch(name){
+            // First Name
             case 'firstName' :
                 if(value.length > 5){
-                    dispatch({type: 'SET-FIRSTNAME', payload: e.target.value})
+                    dispatch({type: 'SET-FIRSTNAME', payload: value})
                 } else {
                     dispatch({type: 'SET-FIRSTNAME-ERROR', payload: "First name must be more than 5 characters"})
                 } break;
+            // Last Name
             case 'lastName' :
                 if(value.length > 5){
-                    dispatch({type: 'SET-LASTNAME', payload: e.target.value})
+                    dispatch({type: 'SET-LASTNAME', payload: value})
                 } else {
                     dispatch({type: 'SET-LASTNAME-ERROR', payload: "Last name must be more than 5 characters"})
                 } break;
+            // Email
             case 'email' :
-                if(value.length > 5){
-                    dispatch({type: 'SET-EMAIL', payload: e.target.value})
-                } else {
-                    dispatch({type: 'SET-EMAIL-ERROR', payload: "Email must be more than 5 characters"})
-                }break;
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
+                    dispatch({type: 'SET-EMAIL', payload: value})
+                }else {
+                    dispatch({type: 'SET-EMAIL-ERROR', payload: "Please enter a valid email"})
+                } break;
             default : break;
         }
     }
