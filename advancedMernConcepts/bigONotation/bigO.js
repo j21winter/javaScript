@@ -61,16 +61,6 @@ function reverseString(string) {
         reverseString += string[i]
     }
 }
-//     let chars = string.split('')
-//     console.log("sorting")
-//     for(let i = 0; i <= chars.length / 2; i++){
-//         let placeholder = chars[i]
-//         chars[i] = chars[chars.length - 1 - i]
-//         chars[chars.length - 1 - i] = placeholder
-//     }
-//     return chars.join('')
-// }
-
 
 
 console.log(reverseString(story))
