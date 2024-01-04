@@ -1,3 +1,5 @@
+// TODO Create rooms for people to go into
+
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import './App.css';
