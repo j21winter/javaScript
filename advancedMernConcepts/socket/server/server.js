@@ -14,6 +14,7 @@ const server = app.listen(port, () => {
 
 require('./config/mongoose.config')
 require('./routes/message.routes')(app)
+require('./routes/room.routes')(app)
 
 const io = socket(server, {
     cors: {
@@ -32,8 +33,18 @@ io.on("connection", socket => {
     // Send welcome to my app when a user connects
     socket.emit("welcome", { message: "Welcome to my app" })
 
+    // Send all rooms to clients
+    socket.emit('allRooms', Object.keys(io.sockets.adapter.rooms))
+
     // When we receive a new message from a user, distribute it to the rest fo the users to update their dom
     socket.on("newMessage", data => {
         io.emit("newMessageAvailable", data)
     })
+
+    socket.on('newRoom', data => {
+        io.emit("newRoomAvailable", data)
+    })
 })
+
+
+
